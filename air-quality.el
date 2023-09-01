@@ -72,7 +72,11 @@
 (defvar air-quality--level nil "Overall Air Quality (AQI).")
 
 (defun air-quality--make-api-call (key lat lon)
-  "Create an API request to Open Weather Map."
+  "Create an API request to Open Weather Map.
+
+KEY is your Open Weather API Key
+LAT is your latitude
+LON is your longitude."
   (concat "http://api.openweathermap.org/data/2.5/air_pollution?lat="
           (number-to-string lat)
           "&lon="
@@ -140,12 +144,13 @@ Ammonia: %d µg/m³"
   :global t
   (if air-quality-mode
       (progn
-        ;; XXX - check that air-quality-open-weather-api-key,
+        ;; Check that air-quality-open-weather-api-key,
         ;; air-quality-latitude and air-quality-longitude are set
-        (add-to-list 'mode-line-misc-info 'air-quality-indicator t )
-        (setq air-quality--timer
-              (run-with-timer 0 (* 60 air-quality-refresh-interval)
-                              #'air-quality--get-update)))
+        (when (and air-quality-open-weather-api-key air-quality-latitude air-quality-longitude)
+          (add-to-list 'mode-line-misc-info 'air-quality-indicator t )
+          (setq air-quality--timer
+                (run-with-timer 0 (* 60 air-quality-refresh-interval)
+                                #'air-quality--get-update))))
     (setq mode-line-misc-info (delq 'air-quality-indicator mode-line-misc-info))
     (cancel-timer air-quality--timer))
   (force-mode-line-update))
