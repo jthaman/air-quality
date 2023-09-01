@@ -71,14 +71,14 @@
 (defvar air-quality--nh3 nil "Ammonia level (micrograms per cubic-meter).")
 (defvar air-quality--level nil "Overall Air Quality (AQI).")
 
-(defun air-quality--make-api-call (key latitude longitude)
-  "Return Open Weather Map URL for LATITUDE and LONGITUDE with API key KEY."
-  (url-parse-make-urlobj
-   "https" nil nil "api.openweathermap.org" nil
-   (concat "/data/2.5/air_pollution/?"
-           (url-build-query-string `(("lat" ,latitude)
-                                     ("lon" ,longitude)
-                                     ("appid" ,key))))))
+(defun air-quality--make-api-call (key lat lon)
+  "Create an API request to Open Weather Map."
+  (concat "http://api.openweathermap.org/data/2.5/air_pollution?lat="
+          (number-to-string lat)
+          "&lon="
+          (number-to-string lon)
+          "&appid="
+          key))
 
 (defconst air-quality--index-alist '((1 . "Good")
                                      (2 . "Fair")

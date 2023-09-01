@@ -20,7 +20,7 @@ Install from Github via [straight.el](https://github.com/radian-software/straigh
   (setq air-quality-latitude 38) ; for example
   (setq air-quality-longitude -77) ; for example
   :config
-  (air-quality-setup-modeline))
+  (air-quality-mode))
 ```
 
 You might prefer `:vc` use-package keyword in Emacs 30+ or Elpaca.
