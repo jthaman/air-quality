@@ -68,7 +68,7 @@
 
 (defvar air-quality--co nil "Carbon Monoxide level (micrograms per cubic-meter).")
 (defvar air-quality--no nil "Nitrogen Oxide level (micrograms per cubic-meter).")
-(defvar air-quality--no2 nil "Nitrogen Dioxide level (micrograms per cubic-meter). ")
+(defvar air-quality--no2 nil "Nitrogen Dioxide level (micrograms per cubic-meter).")
 (defvar air-quality--o3 nil "Ozone (micrograms per cubic-meter).")
 (defvar air-quality--so2 nil "Sulfur Dioxide (micrograms per cubic-meter).")
 (defvar air-quality--pm2_5 nil "PM 2.5 level (micrograms per cubic-meter).")
