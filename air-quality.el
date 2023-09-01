@@ -45,16 +45,18 @@
                  (string :tag "Your API key")))
 
 (defcustom air-quality-refresh-interval 60
-  "An integer. Number of minutes between refreshes of air quality information."
-  :type 'number)
+  "Number of minutes between refreshes of air quality information."
+  :type 'integer)
 
 (defcustom air-quality-latitude nil
-  "A float. Your latitude."
-  :type 'number)
+  "Your latitude."
+  :type '(choice (const   :tag "Unset" nil)
+                 (integer :tag "Your latitude")))
 
 (defcustom air-quality-longitude nil
-  "A float. Your longitude."
-  :type 'number)
+  "Your longitude."
+  :type '(choice (const   :tag "Unset" nil)
+                 (integer :tag "Your longitude")))
 
 ;;;; Private Variables
 
@@ -142,14 +144,27 @@ Ammonia: %d µg/m³"
   :group 'air-quality
   :global t
   (if air-quality-mode
-      (progn
-        ;; Check that air-quality-open-weather-api-key,
-        ;; air-quality-latitude and air-quality-longitude are set
-        (when (and air-quality-open-weather-api-key air-quality-latitude air-quality-longitude)
-          (add-to-list 'mode-line-misc-info 'air-quality-indicator t )
-          (setq air-quality--timer
-                (run-with-timer 0 (* 60 air-quality-refresh-interval)
-                                #'air-quality--get-update))))
+      (let ((need-save nil))
+        (unless air-quality-open-weather-api-key
+          (setq air-quality-open-weather-api-key
+                (read-string "Set your Open Weather API key: ")
+                need-save t)
+          (customize-mark-to-save 'air-quality-open-weather-api-key))
+        (unless air-quality-latitude
+          (setq air-quality-latitude
+                (read-number "Set your latitude: ")
+                need-save t)
+          (customize-mark-to-save 'air-quality-latitude))
+        (unless air-quality-longitude
+          (setq air-quality-longitude
+                (read-number "Set your longitude: ")
+                need-save t)
+          (customize-mark-to-save 'air-quality-longitude))
+        (when need-save (custom-save-all))
+        (add-to-list 'mode-line-misc-info 'air-quality-indicator t )
+        (setq air-quality--timer
+              (run-with-timer 0 (* 60 air-quality-refresh-interval)
+                              #'air-quality--get-update)))
     (setq mode-line-misc-info (delq 'air-quality-indicator mode-line-misc-info))
     (cancel-timer air-quality--timer))
   (force-mode-line-update))
