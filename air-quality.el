@@ -45,17 +45,17 @@
   :type '(choice (const  :tag "Unset" nil)
                  (string :tag "Your API key")))
 
-(defvar air-quality-refresh-interval 60
-  ;; XXX - turn into a defcustom
-  "An integer. Number of minutes between refreshes of air quality information.")
+(defcustom air-quality-refresh-interval 60
+  "An integer. Number of minutes between refreshes of air quality information."
+  :type 'number)
 
-(defvar air-quality-latitude nil
-  ;; XXX - likewise
-  "A float. Your latitude.")
+(defcustom air-quality-latitude nil
+  "A float. Your latitude."
+  :type 'number)
 
-(defvar air-quality-longitude nil
-  ;; XXX - likewise
-  "A float. Your longitude.")
+(defcustom air-quality-longitude nil
+  "A float. Your longitude."
+  :type 'number)
 
 ;;;; Private Variables
 
