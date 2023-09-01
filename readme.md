@@ -27,4 +27,6 @@ You might prefer `:vc` use-package keyword in Emacs 30+ or Elpaca.
 
 ## Outcome
 
+Air quality reports can be Good, Fair, Moderate, Poor, or Very Poor.
+
 ![](pic.png)

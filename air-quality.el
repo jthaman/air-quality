@@ -161,4 +161,4 @@ Ammonia: %d µg/m³"
 
 (provide 'air-quality)
 
-;;; air_quality.el ends here
+;;; air-quality.el ends here
