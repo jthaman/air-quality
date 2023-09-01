@@ -1,12 +1,12 @@
 # `air-quality`
 
-Modeline indicator to display air quality information in Emacs. Does not use any third-party packages.
+Modeline indicator to display air quality information in Emacs. Does not use any third-party packages. Air quality information is fetched asynchronously from Open Weather.
 
 ## Requirements
 
 - A recent version of Emacs
 - Internet connectivity
-- An Open Weather API key (free)
+- An Open Weather API key (free, register for an account)
 
 ## Installation
 
