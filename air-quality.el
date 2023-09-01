@@ -64,6 +64,7 @@
 
 (defvar url-http-end-of-headers)
 (defvar air-quality--timer nil)
+(defvar mode-line-misc-info)
 
 (defvar air-quality--co nil "Carbon Monoxide level (micrograms per cubic-meter).")
 (defvar air-quality--no nil "Nitrogen Oxide level (micrograms per cubic-meter).")
