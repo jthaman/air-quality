@@ -33,7 +33,9 @@
 (require 'url)
 (require 'json)
 
+
 ;;;; User options
+
 
 (defgroup air-quality nil
   "Air quality mode-line indicator."
@@ -60,6 +62,7 @@
 
 ;;;; Private Variables
 
+(defvar url-http-end-of-headers)
 (defvar air-quality--timer nil)
 
 (defvar air-quality--co nil "Carbon Monoxide level (micrograms per cubic-meter).")
