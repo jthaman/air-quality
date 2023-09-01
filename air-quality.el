@@ -32,7 +32,6 @@
 
 (require 'url)
 (require 'json)
-(require 'cl-lib)
 
 ;;;; User options
 
